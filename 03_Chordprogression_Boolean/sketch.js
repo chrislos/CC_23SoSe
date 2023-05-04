@@ -2,7 +2,7 @@
 
 let chord;
 let c_x, c_y, c_w, c_h, c_color;
-let y = 0;
+// let y = 0;
 let r, g, b;
 
 
@@ -24,17 +24,16 @@ function setup() {
   b = 20;
 }
 
+
 function draw() {
   background(220);
 
-  // choose defines a random parameter to distinguish between different chords later on
-  let choose = random(0,100);
-
-
-
+ 
   // as soon c_y starts to increment (from 0 to ...) we check it it reached the bottom. 
   // because we start our drawing at height/2+y we reach the bottom as soon y = 0.5*height
   if ( c_y > 0.5*height) { 
+     // choose defines a random parameter to distinguish between different chords later on
+    let choose = random(0,100);
 
    if (chord == "Cmaj7") {      // if my actual chord == Cmaj7 then AWLAYS jump to F and change some colors + dimensions of the rect.
   
@@ -48,11 +47,11 @@ function draw() {
     }
 
     else if (chord == "F") {    
-      if (choose > 80){       // if chord is is F on the incoming cycle we switch with 20 % certanty (>80) back to Cmaj7
+      if (choose >= 80 && choose <= 100){       // if chord is is F on the incoming cycle we switch with 20 % certanty (>80) back to Cmaj7
         chord = "Cmaj7";
         
-        c_w = random(300,700);
-        c_h = random(250,500); 
+        c_w = random(400,800);
+        c_h = random(250,400); 
 
         g = random(255);
       } else {
