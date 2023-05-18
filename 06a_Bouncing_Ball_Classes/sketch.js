@@ -22,13 +22,20 @@ class Ball {
 
   update(){
     if(this.posX >= width || this.posX <= 0){
-      this.speedX *= -1;
+      let choose 
+
+      this.speedX = this.speedX * -1 + random(-1.5,1.5);
+
     }
-    if(this.posY >= height || this.posY  <= 0){
-      this.speedY *= -1;
+    if(this.posY >= height || this.posY <= 0){
+      this.speedY = this.speedY *-1 + random(-1.5,1.5);
     }
-    this.posY += this.speedY;
-    this.posX += this.speedX;
+    this.posY = this.posY + this.speedY;
+    this.posX = this.posX + this.speedX;
+
+    console.log(this.posY );
+    console.log(this.speedY );
+
 
 
   }
@@ -44,10 +51,10 @@ function setup() {
 
   // initiale new Ball instances (looks a bit redundant right? ;-) 
   ball1 = new Ball(random(width), random(height), random(10));
-  ball2= new Ball(random(width), random(height), random(10));
-  ball3 = new Ball(random(width), random(height), random(10));
-  ball4 = new Ball(random(width), random(height), random(10));
-  ball5 = new Ball(random(width), random(height), random(10));
+  // ball2= new Ball(random(width), random(height), random(10));
+  // ball3 = new Ball(random(width), random(height), random(10));
+  // ball4 = new Ball(random(width), random(height), random(10));
+  // ball5 = new Ball(random(width), random(height), random(10));
 
   
 
@@ -58,16 +65,16 @@ function draw() {
 
   // ugh looks ugly
   ball1.update();
-  ball2.update();
-  ball3.update();
-  ball4.update();
-  ball5.update();
+  // ball2.update();
+  // ball3.update();
+  // ball4.update();
+  // ball5.update();
 
   ball1.draw();
-  ball2.draw();
-  ball3.draw();
-  ball4.draw();
-  ball5.draw();
+  // ball2.draw();
+  // ball3.draw();
+  // ball4.draw();
+  // ball5.draw();
 
 
 
@@ -75,10 +82,10 @@ function draw() {
 
 function mousePressed(){
   ball1.r = random(255);
-  ball2.r = random(255);
-  ball3.r = random(255);
-  ball4.r = random(255);
-  ball5.r = random(255);
+  // ball2.r = random(255);
+  // ball3.r = random(255);
+  // ball4.r = random(255);
+  // ball5.r = random(255);
 }
 
 
