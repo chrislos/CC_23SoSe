@@ -12,8 +12,8 @@ console.log("opened server");
 
 //hello openai
 const config = new openai.Configuration({
-  organization: "org-qlE1mjGemCxstjMySxfjwIgH",
-  apiKey: "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"  
+  organization: "",
+  apiKey: ""  
 });
 
 const openaiApi = new openai.OpenAIApi(config);   //connect openAi with config
