@@ -16,8 +16,8 @@ max.post('server says hi');
 
 //hello openai
 const config = new openai.Configuration({
-  organization: "org-qlE1mjGemCxstjMySxfjwIgH",
-  apiKey: "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"  
+  organization: "",
+  apiKey: ""  
 });
 
 const openaiApi = new openai.OpenAIApi(config);   //connect openAi with config
