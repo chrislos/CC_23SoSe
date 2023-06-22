@@ -1,7 +1,7 @@
 const express = require('express');       // import server
 const socket = require('socket.io');      // import our websocket connection
 const openai = require('openai');         // import openai
-const max = require('max-api');
+const max = require('max-api');           // DO NOT IMPORT. THIS IS HANDLED BY MAX NATIVELY
 
 const app = express();                    // init server app
 const server = app.listen(3000);          // listen to port 3000
@@ -24,7 +24,7 @@ const openaiApi = new openai.OpenAIApi(config);   //connect openAi with config
 max.post("hello openAi");
 
 // here we define our api promt that gots attached to our "Question" that we ask Openai
-let description = ' . Answer me the question in english in style of Haruki Murakami as a complete sentence with a maximum of 13 words. Each word should also include its word function.(e.g. noun, verb, article, pronoun and all others).  I only want barebone JSON no further explanation. And no Crediting and anything else. JUST JSON!!!!! Write me the answer in JSON that can be imported to p5js. Here is an example { "answer" : [{ "w": "I", "f": "pronoun"},{ "w": "like", "f": "verb"},{ "w": "summer", "f": "noun"},etc. }]}'
+let description = ' . Answer me the question in english in style of Edgar Alan Poe as a complete sentence with a maximum of 13 words. Each word should also include its word function.(e.g. noun, verb, article, pronoun and all others).  I only want barebone JSON no further explanation. And no Crediting and anything else. JUST JSON!!!!! Write me the answer in JSON that can be imported to p5js. Here is an example { "answer" : [{ "w": "I", "f": "pronoun"},{ "w": "like", "f": "verb"},{ "w": "summer", "f": "noun"},etc. }]}'
 
 /*
 we want the following format form openAI:
@@ -85,10 +85,14 @@ function newConnection(socketInc){
     max.outlet('words_ '+words);
     max.outlet('functions_ '+functions);
 
+  }
 
-    //console.log(completion.data.choices[0].message.content);
+  max.addHandler("p5", fromMaxtoP5js);
 
 
+  function fromMaxtoP5js(msg){
+    max.post(msg);
+    socketInc.emit('fromMax', msg);
   }
 
   //askMe(prompt);
