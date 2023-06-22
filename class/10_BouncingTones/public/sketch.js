@@ -19,16 +19,30 @@ class Ball {
   update(){
     this.bounce = false;
    
-    if(this.posX >= width || this.posX <= 0){       // if we reach the x border of the canvas we want to swap + to - et vice versa 
-      this.speedX *= -1 ;
+    if(this.posX >= width){       // if we reach the x border of the canvas we want to swap + to - et vice versa 
+      this.speedX *= -1;
       this.bounce = true;
+      // Oliver
+      this.posX = width;
+
     }
-    else if(this.posY >= height || this.posY  <= 0){     // same logic on our y axis
+    else if(this.posX <= 0){       // if we reach the x border of the canvas we want to swap + to - et vice versa 
+      this.speedX *= -1;
+      this.bounce = true;
+      this.posX = 0;
+    }
+    else if(this.posY >= height){     // same logic on our y axis
       this.speedY *= -1 ;
       this.bounce = true;
+      this.posY = height;
+    }
+    else if(this.posY  <= 0){     // same logic on our y axis
+      this.speedY *= -1 ;
+      this.bounce = true;
+      this.posY = 0;
     }
     this.posY += this.speedY;                       // assign current speeds to final positions of the Instance
-    this.posX += this.speedX ; 
+    this.posX += this.speedX; 
   }
   
   
@@ -68,10 +82,9 @@ function setup() {
 
   // send data to following server:
   socket = io.connect("http://localhost:3000"); // either you're working on localhost or you put in your network adress for multiple devices
-  // socket.on('reply', replyText);
 
   // Now we can define dynamically how many Instances of type Ball we would like to initialize
-  for (let i = 0; i <= 8; i++){
+  for (let i = 0; i <= 100; i++){
     balls[i] = new Ball(random(width), random(height), random(3));
   }
 
@@ -100,6 +113,7 @@ function mousePressed(){
   // this only works if we want to work with the whole array....
   for (let ball of balls) {
     ball.r = random(255);
+    ball.g = random(100, 255);
    
   }
 
